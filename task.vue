@@ -66,7 +66,7 @@
   },
   computed: {
   ...mapState({
-  'tasklist': state => state.task.getMineBaseMsg.list
+  'tasklist': state => state.task.getMineBaseMsg.tasklist
   }),
   ...mapGetters([
   'getMineBaseMsg'
