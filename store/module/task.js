@@ -6,16 +6,17 @@ import api from '@/fetch/api'
 import * as types from './type'
 
 const state = {
-  state: {
-    getMineBaseMsg:{}
+  getMineBaseMsg:{
+    issuccess:0,
+    message:'',
+    tasklist:[]
   }
 }
 const actions = {
-  getMineBaseApi({commit,prams}) {
-    console.log("aaaaa");
-    // api.getTaskList(prams).then(res => {
-    //     commit(types.GET_BASE_API, res)
-    //   })
+  getMineBaseApi({commit},prams) {
+    api.getTaskList(prams).then(res => {
+        commit(types.GET_BASE_API, res)
+      })
   }
 }
 
@@ -25,7 +26,10 @@ const getters = {
 
 const mutations = {
   [types.GET_BASE_API](state, res) {
-    state.getMineBaseMsg = { ...state.getMineBaseMsg, msg: res.data.msg }
+    // state.getMineBaseMsg = { ...state.getMineBaseMsg, msg: res.data.message }
+    state.getMineBaseMsg.issuccess =res.issuccess;
+    state.getMineBaseMsg.message =res.message;
+    state.getMineBaseMsg.tasklist =res.data.list;
   }
 }
 
@@ -35,3 +39,4 @@ export default {
   getters,
   mutations
 }
+
